@@ -36,7 +36,7 @@ class UserController extends Controller
             $request->merge(['password' => bcrypt($request->password)]);
         try {
             $result = $this->userRepository->update($id, $request->all());
-            if ($result)
+            if (!empty($result))
                 return self::successResponse(trans('asset.update_success'), $result);
         } catch (\Exception $exception){
         }
